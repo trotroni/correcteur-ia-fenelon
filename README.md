@@ -1,3 +1,5 @@
+# README PAS A JOUR
+# CONTACT `trotroni@outlook.com´
 # Agent IA de correction de copies écrites – NSI
 
 ## Objectif
