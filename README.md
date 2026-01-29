@@ -1,5 +1,6 @@
 # README PAS A JOUR
-# CONTACT ```trotroni@outlook.com```
+## CONTACT ```trotroni@outlook.com```
+## Envoyez-moi un mail pour que je vous ajoute sur le repo
 # Agent IA de correction de copies écrites – NSI
 
 ## Objectif
