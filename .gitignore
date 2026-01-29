@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Environnements virtuels
+.venv/
+
+# IDE
+.idea/
+
+# Dossiers parasites
+https:/
