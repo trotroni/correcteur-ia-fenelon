@@ -1,25 +1,30 @@
 # interface.py
 
+import json
 import tkinter as tk
 from correcteur import corriger
-from data.copies import questions
+
+
+with open("data/copies.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+questions = data["questions"]
+
 
 def lancer_correction():
-    id_q = int(var_question.get())
+    id_question = int(var_question.get())
     reponse = zone_texte.get("1.0", tk.END)
 
-    note, commentaire = corriger(id_q, reponse)
+    note, commentaire = corriger(id_question, reponse)
+    resultat.set(f"Note sur 20 : {note}\n{commentaire}")
 
-    resultat.set(f"Note : {note}\n{commentaire}")
 
-# Fenêtre
 fenetre = tk.Tk()
 fenetre.title("Agent IA de correction - NSI")
 
-# Question
 tk.Label(fenetre, text="Choisir la question").pack()
-var_question = tk.StringVar(value="1")
 
+var_question = tk.StringVar(value="1")
 for q in questions:
     tk.Radiobutton(
         fenetre,
@@ -28,14 +33,11 @@ for q in questions:
         value=str(q["id"])
     ).pack(anchor="w")
 
-# Zone texte
 zone_texte = tk.Text(fenetre, height=6, width=60)
 zone_texte.pack()
 
-# Bouton
 tk.Button(fenetre, text="Corriger", command=lancer_correction).pack()
 
-# Résultat
 resultat = tk.StringVar()
 tk.Label(fenetre, textvariable=resultat).pack()
 

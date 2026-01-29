@@ -23,11 +23,11 @@ def analyser_reponse(reponse, criteres):
     score = 0
     score_max = 0
 
-    for mot, data in criteres.items():
-        poids = data["poids"]
+    for mot, infos in criteres.items():
+        poids = infos["poids"]
         score_max += poids
 
-        if critere_present(reponse, mot, data["synonymes"]):
+        if critere_present(reponse, mot, infos["synonymes"]):
             score += poids
 
     return score, score_max

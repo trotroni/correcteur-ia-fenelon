@@ -1,18 +1,22 @@
-# correcteur.py
+def corriger(texte):
+    score = 0
+    details = {}
 
-from data.copies import questions
-from analyse import analyser_reponse
-from evaluation import calcul_note_sur_20, generer_commentaire
+    if "algorithme" in texte.lower():
+        score += 5
+        details["algorithme"] = "Présent"
+    else:
+        details["algorithme"] = "Absent"
 
-def corriger(id_question, reponse):
-    question = next(q for q in questions if q["id"] == id_question)
+    if "variable" in texte.lower():
+        score += 5
+        details["variable"] = "Présent"
+    else:
+        details["variable"] = "Absent"
 
-    score, score_max = analyser_reponse(
-        reponse,
-        question["criteres"]
-    )
+    note = min(score, 20)
 
-    note_20 = calcul_note_sur_20(score, score_max)
-    commentaire = generer_commentaire(note_20)
-
-    return note_20, commentaire
+    return {
+        "note": note,
+        "details": details
+    }

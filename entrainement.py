@@ -1,8 +1,16 @@
 # entrainement.py
 
-from data.copies import questions, copies
+import json
 from analyse import analyser_reponse
 from evaluation import calcul_note_sur_20
+
+
+with open("data/copies.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+questions = data["questions"]
+copies = data["copies"]
+
 
 def statistiques():
     erreurs = []
@@ -16,11 +24,12 @@ def statistiques():
         )
 
         note_ia = calcul_note_sur_20(score, score_max)
-        note_prof = copie["note_prof"] * (20 / question["note_max"])
+        note_prof = copie["note_prof_sur_20"]
 
         erreurs.append(abs(note_ia - note_prof))
 
-        print("Note IA :", note_ia, "/ Note Prof :", round(note_prof, 1))
+        print("Réponse :", copie["reponse_eleve"])
+        print("Note IA :", note_ia, "| Note Prof :", note_prof)
         print("-" * 40)
 
     print("Erreur moyenne :", round(sum(erreurs) / len(erreurs), 2))
